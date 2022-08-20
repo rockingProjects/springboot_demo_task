@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+ dsgvo_demo_postgres:
+  build:
+    context: .
+    dockerfile: Dockerfile_demo_postgres
+  ports:
+   - "127.0.0.1:5432:5432"
+    

@@ -1,0 +1,4 @@
+FROM postgres
+ENV POSTGRES_PASSWORD demo
+ENV POSTGRES_DB demo
+COPY init_demo_postgres.sql /docker-entrypoint-initdb.d/init.sql
