@@ -8,22 +8,22 @@ The time you need to solve the task should not be more than 4 hours.
 
 ## Prerequisites
 
-- java 11
-- eclipse with installed lombok
+- java 17
+- eclipse with installed lombok or intellij
 - docker with docker-compose
 - maven
 
-We prefer to use mac os or linux. If you use windows, ensure to have UTF-8 as encoding standard in eclipse.
+We prefer to use mac os or linux. If you use windows, ensure to have UTF-8 as standard encoding in eclipse.
 
 ## First steps
 
 ### Uncompress
 
-Uncompress the project.
+Uncompress the project or checkout directly from github.
 
-### Postgres
+### Start a Postgres
 
-Then run on CLI:
+Run on CLI:
 
 ```
 ./start_for_junit.sh
@@ -41,6 +41,8 @@ dsgvo_demo_postgres_1  | 2021-02-15 14:14:24.682 UTC [1] LOG:  listening on Unix
 dsgvo_demo_postgres_1  | 2021-02-15 14:14:24.689 UTC [74] LOG:  database system was shut down at 2021-02-15 14:14:24 UTC
 dsgvo_demo_postgres_1  | 2021-02-15 14:14:24.697 UTC [1] LOG:  database system is ready to accept connections
 ```
+
+If you have running a local postgres you can use that, but you need to change the properties of the application.
 
 ### Run maven
 
@@ -78,7 +80,7 @@ If everything is fine, the output should look like following:
 ```
 
 
-Exception like these after first start are normal:
+Exception like these after first start are normal, because spring starts to initialize the database and tries to drop not existing tables:
 
 
 ```
@@ -89,8 +91,8 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "a
 	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331) ~[hibernate-core-5.4.27.Final.jar:5.4.27.Final]
 ```
 
-### Import to eclipse
-Import the project into eclipse.
+### Import to eclipse / intellij
+Import the project into eclipse or open it in intellij.
 
 # Specification
 
@@ -143,27 +145,37 @@ Then:
 - Understand how we specify and implement unit tests.
 - Analyze which test cases correspond to the different steps and execution pathes in the modelled activity.
 - Find and analyze the implemented DAO-Class.
-- Consider that UC-DEMO-002 is not implemented (yet)
+- Consider that UC-DEMO-002 is not implemented (yet).
 
-## Task 1: Implement UC-DEMO-001-01
-Implement exactly as specified:
+Use the existing implementation as a base for the tasks.
+
+## Task 1: Implement UC-DEMO-002 (Rest Endpoint)
+Implement exactly as specified in model (see above):
 
 - REST-Endpoint
-- Needed Entity / Enum
-- Activity
+- Needed DTO
+- Call of Activity
 
 Use the existing implementation as reference.
 
-## Task 2: Test UC-DEMO-001-01
+## Task 2: Implement UC-DEMO-002-01 (Activity)
+Implement exactly as specified in model (see above):
+
+- Activity
+- Needed Entity / Enum
+
+Use the existing implementation as reference.
+
+## Task 3: Test UC-DEMO-002
 
 Specify and implement Unit-Tests with following test cases:
 
- - testSuccess (a relationship is created successfully)
- - testFailSourcePersonNotFoundException
+- testSuccess (Prepare needed data, Rest-Endpoint gets called, Activity gets called, Rest endpoint responds as expected)
+- testFailSourcePersonNotFoundException
 
 Define three other tests
 
-## Task 3: Deliver
+## Task 4: Deliver
 We want you to deliver a complete implementation with a running test suite (with maven, eclipse is not relevant).
 
 # Conclusion
